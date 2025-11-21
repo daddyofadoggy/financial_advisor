@@ -16,7 +16,7 @@
 
 ## Overview
 
-**Financial Advisor AI** is a multi-agent system built with Google's Agent Development Kit (ADK) and powered by Gemini 2.5 Pro that orchestrates five specialized AI agentsData Analyst (retrieving real-time market data via Alpha Vantage's Model Context Protocol with 60+ financial tools), Trading Analyst (developing investment strategies), Execution Analyst (creating actionable plans), Risk Analyst (evaluating potential risks), and Summary Agent (generating executive reports with PDF export,working sequentially through state-based communication to deliver comprehensive financial analysis and risk assessment for stock investments, all deployed on Google Cloud Run with an interactive web chat interface and RESTful APIs.
+**Financial Advisor AI** is a multi-agent system built with Google's Agent Development Kit (ADK) and powered by Gemini 2.5 Pro that orchestrates five specialized AI agents—Data Analyst (retrieving real-time market data via Alpha Vantage's Model Context Protocol with 60+ financial tools), Trading Analyst (developing investment strategies), Execution Analyst (creating actionable plans), Risk Analyst (evaluating potential risks), and Summary Agent (generating executive reports with PDF export)—working sequentially through state-based communication to deliver comprehensive financial analysis and risk assessment for stock investments, all deployed on Google Cloud Run with an interactive web chat interface and RESTful APIs.
 
 ### Key Features
 
@@ -251,11 +251,7 @@ cd financial-advisor
 Using uv (recommended):
 
 ```bash
-# Install uv if not already installed
-curl -LsSf https://astral.sh/uv/install.sh | sh
-
-# Install project dependencies
-uv pip install -e .
+uv pip install -r pyproject.toml
 ```
 
 Or using pip:
@@ -264,98 +260,52 @@ Or using pip:
 pip install -e .
 ```
 
-### Step 3: Configure Environment Variables
+### Step 3: Set Up Environment Variables
 
 Create a `.env` file in the project root:
 
 ```bash
-# Google Cloud Configuration
+# Alpha Vantage API Key (required)
+ALPHA_VANTAGE_API_KEY=your_alpha_vantage_api_key_here
+
+# Google AI Configuration
 GOOGLE_GENAI_USE_VERTEXAI=1
-GOOGLE_CLOUD_PROJECT=your-project-id
-GOOGLE_CLOUD_LOCATION=us-east1
-GOOGLE_CLOUD_STORAGE_BUCKET=your-bucket-name
-
-# Alpha Vantage API Configuration
-ALPHA_VANTAGE_API_KEY=your-api-key-here
-ALPHA_VANTAGE_MCP_URL=https://mcp.alphavantage.co/mcp
 ```
 
-**Important:**
-- Never commit `.env` file to version control
-- Get your free Alpha Vantage API key at: https://www.alphavantage.co/support/#api-key
-- Free tier includes 25 requests/day, 5 requests/minute
-
-### Step 4: Verify Installation
-
-```bash
-# Test that dependencies are installed
-uv pip list
-
-# Verify environment variables are loaded
-python -c "import os; from dotenv import load_dotenv; load_dotenv(); print('API Key:', os.getenv('ALPHA_VANTAGE_API_KEY')[:10] + '...')"
-```
+Get your Alpha Vantage API key from: https://www.alphavantage.co/support/#api-key
 
 
 ## Running the Agent
 
-### Option 1: Terminal Chat Interface (Quick Start)
+### Option 1: Run with ADK CLI (Recommended)
 
-Run the agent in your terminal with an interactive chat:
-
-```bash
-uv run adk run .
-```
-
-**Usage:**
-```
-> Enter your query: AAPL
-[Agent processes and returns analysis]
-
-> Enter your query: Tell me about Microsoft stock
-[Agent processes MSFT analysis]
-
-> Enter your query: exit
-```
-
-### Option 2: Web Interface (Recommended)
-
-Launch a full web UI with chat interface:
+The ADK CLI provides a built-in web chat interface:
 
 ```bash
-uv run adk web .
+adk run financial_advisor.agent
 ```
 
-Then open your browser to: **http://localhost:8000**
+This will:
+- Start the ADK agent server
+- Launch web UI at http://localhost:8080/dev-ui/
+- Provide API documentation at http://localhost:8080/docs
 
-**Features:**
-- Interactive chat interface
-- Session management
-- Conversation history
-- PDF report download
-- Real-time agent responses
+### Option 2: Run with FastAPI Wrapper
 
-### Option 3: Python Script
+For more control over the API:
 
-Use the agent programmatically:
+```bash
+uvicorn financial_advisor.fast_api_app:app --reload --port 8080
+```
+
+### Option 3: Import as Python Module
 
 ```python
-from google.adk import App
-from google.adk.runners import Runner
-from google.adk.sessions.in_memory_session_service import InMemorySessionService
-from financial_advisor.agent import root_agent
+from financial_advisor.agent import agent
 
-# Create ADK App
-app = App(name="financial_advisor", root_agent=root_agent)
-session_service = InMemorySessionService()
-runner = Runner(app=app, session_service=session_service)
-
-# Run query
-result = await runner.run_async(
-    user_content="Analyze AAPL stock",
-    session_id="my_session"
-)
-
-print(result.get("financial_coordinator_output"))
+# Query the agent
+response = agent.chat("Analyze AAPL stock")
+print(response)
 ```
 
 ### Example Queries
@@ -512,31 +462,31 @@ Plus:
 
 ```
 financial-advisor/
--   financial_advisor/
--   -   agent.py                    # Root coordinator agent
--   -   prompt.py                   # Main orchestration logic
--   - fast_api_app.py            # FastAPI wrapper (optional)
--   -   sub_agents/
--   -   -   data_analyst/
--   -   -   -   agent.py           # Data gathering agent
--   -   -   -   prompt.py          # Data collection instructions
--   -   -   trading_analyst/       # Strategy generation
--   -   -   execution_analyst/     # Action planning
--   -   -   risk_analyst/          # Risk assessment
--   -   -   summary_agent/         # Report generation
--   - tools/
--   -   - alpha_vantage_tools.py # MCP toolset configuration
--   -   -   visualization_tools.py # PDF export
--   -   -   __init__.py
--   -   utils/
--       -   pdf_generator.py       # PDF creation utilities
-- deployment/
--   -   deploy_cloud_run.sh        # Cloud Run deployment script
--   Dockerfile                      # Container definition
-- pyproject.toml                  # Python dependencies
--   .env                            # Environment variables (not in git)
--   README.md                       # This file
--   deployment_steps.md             # Detailed deployment guide
+├── financial_advisor/
+│   ├── agent.py                    # Root coordinator agent
+│   ├── prompt.py                   # Main orchestration logic
+│   ├── fast_api_app.py             # FastAPI wrapper (optional)
+│   ├── sub_agents/
+│   │   ├── data_analyst/
+│   │   │   ├── agent.py            # Data gathering agent
+│   │   │   └── prompt.py           # Data collection instructions
+│   │   ├── trading_analyst/        # Strategy generation
+│   │   ├── execution_analyst/      # Action planning
+│   │   ├── risk_analyst/           # Risk assessment
+│   │   └── summary_agent/          # Report generation
+│   ├── tools/
+│   │   ├── alpha_vantage_tools.py  # MCP toolset configuration
+│   │   ├── visualization_tools.py  # PDF export
+│   │   └── __init__.py
+│   └── utils/
+│       └── pdf_generator.py        # PDF creation utilities
+├── deployment/
+│   └── deploy_cloud_run.sh         # Cloud Run deployment script
+├── Dockerfile                       # Container definition
+├── pyproject.toml                   # Python dependencies
+├── .env                             # Environment variables (not in git)
+├── README.md                        # This file
+└── deployment_steps.md              # Detailed deployment guide
 ```
 
 ---
