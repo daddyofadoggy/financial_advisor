@@ -2,7 +2,6 @@
 
 **Live Demo:** [https://financial-advisor-r4ixiexwla-ue.a.run.app/dev-ui/](https://financial-advisor-r4ixiexwla-ue.a.run.app/dev-ui/)
 
----
 
 ## Table of Contents
 
@@ -13,7 +12,7 @@
 - [Running the Agent](#running-the-agent)
 - [Deployment](#deployment)
 
----
+
 
 ## Overview
 
@@ -38,7 +37,7 @@
 - **Individual Investors**: Personal investment strategy and risk evaluation
 - **Trading Desks**: Quick analysis and risk evaluation
 
----
+
 
 ## Legal Disclaimer
 
@@ -88,7 +87,6 @@ The creators, contributors, and operators of this software shall NOT be liable f
 
 **CONSULT A LICENSED FINANCIAL ADVISOR BEFORE MAKING INVESTMENT DECISIONS.**
 
----
 
 ## Agent Details
 
@@ -109,7 +107,6 @@ The Financial Advisor AI system consists of six specialized agents orchestrated 
   - export_summary_to_pdf function
 - **Output Key:** financial_coordinator_output
 
----
 
 ### 2. Data Analyst Agent
 
@@ -131,7 +128,6 @@ The Financial Advisor AI system consists of six specialized agents orchestrated 
 - **Output Key:** market_data_analysis_output
 - **External Integration:** Alpha Vantage API via Model Context Protocol (MCP)
 
----
 
 ### 3. Trading Analyst Agent
 
@@ -147,7 +143,7 @@ The Financial Advisor AI system consists of six specialized agents orchestrated 
 - **Input:** Reads market_data_analysis_output from shared state
 - **Output Key:** proposed_trading_strategies_output
 
----
+
 
 ### 4. Execution Analyst Agent
 
@@ -164,7 +160,7 @@ The Financial Advisor AI system consists of six specialized agents orchestrated 
 - **Input:** Reads proposed_trading_strategies_output from shared state
 - **Output Key:** execution_plan_output
 
----
+
 
 ### 5. Risk Analyst Agent
 
@@ -181,7 +177,6 @@ The Financial Advisor AI system consists of six specialized agents orchestrated 
 - **Input:** Reads all previous state outputs
 - **Output Key:** final_risk_assessment_output
 
----
 
 ### 6. Summary Agent
 
@@ -197,7 +192,7 @@ The Financial Advisor AI system consists of six specialized agents orchestrated 
 - **Input:** Reads all agent outputs from shared state
 - **Output Key:** executive_summary_output
 
----
+
 
 ### Agent Communication Flow
 
@@ -234,7 +229,6 @@ All agents communicate through **shared state storage**:
 - Coordinator manages state access and orchestration
 - Enables sequential processing with data persistence
 
----
 
 ## Setup and Installation
 
@@ -301,7 +295,6 @@ uv pip list
 python -c "import os; from dotenv import load_dotenv; load_dotenv(); print('API Key:', os.getenv('ALPHA_VANTAGE_API_KEY')[:10] + '...')"
 ```
 
----
 
 ## Running the Agent
 
@@ -389,7 +382,6 @@ The agent will provide:
 5. **Executive Summary**: Comprehensive report with key findings
 6. **PDF Export**: Downloadable professional report (via web interface)
 
----
 
 ## Deployment
 
@@ -520,31 +512,31 @@ Plus:
 
 ```
 financial-advisor/
-   financial_advisor/
-      agent.py                    # Root coordinator agent
-      prompt.py                   # Main orchestration logic
-      fast_api_app.py            # FastAPI wrapper (optional)
-      sub_agents/
-         data_analyst/
-            agent.py           # Data gathering agent
-            prompt.py          # Data collection instructions
-         trading_analyst/       # Strategy generation
-         execution_analyst/     # Action planning
-         risk_analyst/          # Risk assessment
-         summary_agent/         # Report generation
-      tools/
-         alpha_vantage_tools.py # MCP toolset configuration
-         visualization_tools.py # PDF export
-         __init__.py
-      utils/
-          pdf_generator.py       # PDF creation utilities
-   deployment/
-      deploy_cloud_run.sh        # Cloud Run deployment script
-   Dockerfile                      # Container definition
-   pyproject.toml                  # Python dependencies
-   .env                            # Environment variables (not in git)
-   README.md                       # This file
-   deployment_steps.md             # Detailed deployment guide
+-   financial_advisor/
+-   -   agent.py                    # Root coordinator agent
+-   -   prompt.py                   # Main orchestration logic
+-   - fast_api_app.py            # FastAPI wrapper (optional)
+-   -   sub_agents/
+-   -   -   data_analyst/
+-   -   -      agent.py           # Data gathering agent
+-   -   -      prompt.py          # Data collection instructions
+-   -   -   trading_analyst/       # Strategy generation
+-   -   -   execution_analyst/     # Action planning
+-   -   -   risk_analyst/          # Risk assessment
+-   -   -   summary_agent/         # Report generation
+-   - tools/
+-   -   - alpha_vantage_tools.py # MCP toolset configuration
+-   -   -   visualization_tools.py # PDF export
+-   -   -   __init__.py
+-   -   utils/
+-       -   pdf_generator.py       # PDF creation utilities
+- deployment/
+-   -   deploy_cloud_run.sh        # Cloud Run deployment script
+-   Dockerfile                      # Container definition
+- pyproject.toml                  # Python dependencies
+-   .env                            # Environment variables (not in git)
+-   README.md                       # This file
+-   deployment_steps.md             # Detailed deployment guide
 ```
 
 ---
