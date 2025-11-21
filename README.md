@@ -16,7 +16,7 @@
 
 ## Overview
 
-**Financial Advisor AI** is a multi-agent system built with Google's Agent Development Kit (ADK) and powered by Gemini 2.5 Pro that orchestrates five specialized AI agentsData Analyst (retrieving real-time market data via Alpha Vantage's Model Context Protocol with 60+ financial tools), Trading Analyst (developing investment strategies), Execution Analyst (creating actionable plans), Risk Analyst (evaluating potential risks), and Summary Agent (generating executive reports with PDF export)working sequentially through state-based communication to deliver comprehensive financial analysis and risk assessment for stock investments, all deployed on Google Cloud Run with an interactive web chat interface and RESTful APIs.
+**Financial Advisor AI** is a multi-agent system built with Google's Agent Development Kit (ADK) and powered by Gemini 2.5 Pro that orchestrates five specialized AI agentsData Analyst (retrieving real-time market data via Alpha Vantage's Model Context Protocol with 60+ financial tools), Trading Analyst (developing investment strategies), Execution Analyst (creating actionable plans), Risk Analyst (evaluating potential risks), and Summary Agent (generating executive reports with PDF export,working sequentially through state-based communication to deliver comprehensive financial analysis and risk assessment for stock investments, all deployed on Google Cloud Run with an interactive web chat interface and RESTful APIs.
 
 ### Key Features
 
@@ -518,8 +518,8 @@ financial-advisor/
 -   - fast_api_app.py            # FastAPI wrapper (optional)
 -   -   sub_agents/
 -   -   -   data_analyst/
--   -   -      agent.py           # Data gathering agent
--   -   -      prompt.py          # Data collection instructions
+-   -   -   -   agent.py           # Data gathering agent
+-   -   -   -   prompt.py          # Data collection instructions
 -   -   -   trading_analyst/       # Strategy generation
 -   -   -   execution_analyst/     # Action planning
 -   -   -   risk_analyst/          # Risk assessment
