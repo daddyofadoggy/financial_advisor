@@ -17,15 +17,7 @@
 
 ## Overview
 
-**Financial Advisor AI** is a multi-agent system built with Google's Agent Development Kit (ADK) and powered by Gemini 2.5 Pro that orchestrates five specialized AI agents:
-
-- **Data Analyst** - Retrieving real-time market data via Alpha Vantage's Model Context Protocol with 60+ financial tools
-- **Trading Analyst** - Developing investment strategies  
-- **Execution Analyst** - Creating actionable execution plans
-- **Risk Analyst** - Evaluating potential risks
-- **Summary Agent** - Generating executive reports with PDF export
-
-These agents work sequentially through state-based communication to deliver comprehensive financial analysis and risk assessment for stock investments, all deployed on Google Cloud Run with an interactive web chat interface and RESTful APIs.
+**Financial Advisor AI** is a multi-agent system built with Google's Agent Development Kit (ADK) and powered by Gemini 2.5 Pro that orchestrates five specialized AI agents:Data Analyst (retrieving real-time market data via Alpha Vantage's Model Context Protocol with 60+ financial tools), Trading Analyst (developing investment strategies), Execution Analyst (creating actionable plans), Risk Analyst (evaluating potential risks), and Summary Agent (generating executive reports with PDF export)working sequentially through state-based communication to deliver comprehensive financial analysis and risk assessment for stock investments, all deployed on Google Cloud Run with an interactive web chat interface and RESTful APIs.
 
 ### Key Features
 
@@ -528,32 +520,33 @@ Plus:
 
 ```
 financial-advisor/
-   financial_advisor/
-      agent.py                    # Root coordinator agent
-      prompt.py                   # Main orchestration logic
-      fast_api_app.py            # FastAPI wrapper (optional)
-      sub_agents/
-         data_analyst/
-            agent.py           # Data gathering agent
-            prompt.py          # Data collection instructions
-         trading_analyst/       # Strategy generation
-         execution_analyst/     # Action planning
-         risk_analyst/          # Risk assessment
-         summary_agent/         # Report generation
-      tools/
-         alpha_vantage_tools.py # MCP toolset configuration
-         visualization_tools.py # PDF export
-         __init__.py
-      utils/
-          pdf_generator.py       # PDF creation utilities
-   deployment/
-      deploy_cloud_run.sh        # Cloud Run deployment script
-   Dockerfile                      # Container definition
-   pyproject.toml                  # Python dependencies
-   .env                            # Environment variables (not in git)
-   README.md                       # This file
-   deployment_steps.md             # Detailed deployment guide
+├── financial_advisor/
+│   ├── agent.py                    # Root coordinator agent
+│   ├── prompt.py                   # Main orchestration logic
+│   ├── fast_api_app.py            # FastAPI wrapper (optional)
+│   ├── sub_agents/
+│   │   ├── data_analyst/
+│   │   │   ├── agent.py           # Data gathering agent
+│   │   │   └── prompt.py          # Data collection instructions
+│   │   ├── trading_analyst/       # Strategy generation
+│   │   ├── execution_analyst/     # Action planning
+│   │   ├── risk_analyst/          # Risk assessment
+│   │   └── summary_agent/         # Report generation
+│   ├── tools/
+│   │   ├── alpha_vantage_tools.py # MCP toolset configuration
+│   │   ├── visualization_tools.py # PDF export
+│   │   └── __init__.py
+│   └── utils/
+│       └── pdf_generator.py       # PDF creation utilities
+├── deployment/
+│   └── deploy_cloud_run.sh        # Cloud Run deployment script
+├── Dockerfile                      # Container definition
+├── pyproject.toml                  # Python dependencies
+├── .env                            # Environment variables (not in git)
+├── README.md                       # This file
+└── deployment_steps.md             # Detailed deployment guide
 ```
+
 
 ---
 

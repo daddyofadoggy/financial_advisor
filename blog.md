@@ -20,7 +20,7 @@ For a human investor, this process takes hours and requires expertise across mul
 
 **What if we could build a team of specialized AI agents, each expert in one domain, working together seamlessly?**
 
-That's exactly what I built with **RiskNavigator AI** - a production-grade multi-agent system  built with Google's Agent Development Kit (ADK) and powered by Gemini 2.5 Pro that orchestrates multi-agent collaboration to deliver institutional-quality financial analysis instantly. 
+That's exactly what I built with **RiskNavigator AI** - a multi-agent system built with Google's Agent Development Kit (ADK) and powered by Gemini 2.5 Pro that orchestrates five specialized AI agents:Data Analyst (retrieving real-time market data via Alpha Vantage's Model Context Protocol with 60+ financial tools), Trading Analyst (developing investment strategies), Execution Analyst (creating actionable plans), Risk Analyst (evaluating potential risks), and Summary Agent (generating executive reports with PDF export)working sequentially through state-based communication to deliver comprehensive financial analysis and risk assessment for stock investments, all deployed on Google Cloud Run with an interactive web chat interface and RESTful APIs.
 
 **Live Demo:** https://financial-advisor-r4ixiexwla-ue.a.run.app
 **GitHub:** https://github.com/daddyofadoggy/financial_advisor
