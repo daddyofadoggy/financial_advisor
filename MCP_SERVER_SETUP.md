@@ -61,9 +61,9 @@ Update your `.env` file:
 ```env
 # Existing Google Cloud Configuration
 GOOGLE_GENAI_USE_VERTEXAI=1
-GOOGLE_CLOUD_PROJECT=resolute-spirit-478702-n8
+GOOGLE_CLOUD_PROJECT=your-project-id
 GOOGLE_CLOUD_LOCATION=us-east1
-GOOGLE_CLOUD_STORAGE_BUCKET=financial-advisor-bucket-resolute-spirit-478702-n8
+GOOGLE_CLOUD_STORAGE_BUCKET=financial-advisor-bucket-your-project-id
 
 # Alpha Vantage MCP Server Configuration
 ALPHA_VANTAGE_API_KEY=your_api_key_here

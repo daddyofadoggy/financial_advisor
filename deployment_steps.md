@@ -5,7 +5,7 @@
 This document provides a complete guide for deploying the Financial Advisor multi-agent system to Google Cloud Run using the Agent Development Kit (ADK) and agent-starter-pack.
 
 **Project Information:**
-- **Project ID**: resolute-spirit-478702-n8
+- **Project ID**: your-project-id
 - **Region**: us-east1
 - **Service Name**: financial-advisor
 - **Live Chat Interface**: https://financial-advisor-r4ixiexwla-ue.a.run.app/dev-ui/
@@ -113,9 +113,9 @@ dependencies = [
 Create `.env` file:
 ```bash
 GOOGLE_GENAI_USE_VERTEXAI=1
-GOOGLE_CLOUD_PROJECT=resolute-spirit-478702-n8
+GOOGLE_CLOUD_PROJECT=your-project-id
 GOOGLE_CLOUD_LOCATION=us-east1
-GOOGLE_CLOUD_STORAGE_BUCKET=financial-advisor-bucket-resolute-spirit-478702-n8
+GOOGLE_CLOUD_STORAGE_BUCKET=financial-advisor-bucket-your-project-id
 ALPHA_VANTAGE_API_KEY=your-api-key-here
 ALPHA_VANTAGE_MCP_URL=https://mcp.alphavantage.co/mcp
 ```
@@ -343,7 +343,7 @@ chmod +x deployment/deploy_cloud_run.sh
    - Build ID: `3e06c136-abd0-409e-9bf9-b88042dd7294`
    - Build logs: https://console.cloud.google.com/cloud-build/builds/3e06c136-abd0-409e-9bf9-b88042dd7294
    - Duration: ~2 minutes
-   - Image: `gcr.io/resolute-spirit-478702-n8/financial-advisor:latest`
+   - Image: `gcr.io/your-project-id/financial-advisor:latest`
    - Size: ~750 MB (before compression)
 
 3. **Deploy to Cloud Run**
@@ -544,7 +544,7 @@ curl https://financial-advisor-r4ixiexwla-ue.a.run.app/
 gcloud logging read \
   "resource.type=cloud_run_revision AND resource.labels.service_name=financial-advisor" \
   --limit=50 \
-  --project=resolute-spirit-478702-n8
+  --project=your-project-id
 ```
 
 ---
@@ -572,11 +572,11 @@ uv run adk web .
 
 # Or manually:
 # 1. Build container
-gcloud builds submit --tag gcr.io/resolute-spirit-478702-n8/financial-advisor
+gcloud builds submit --tag gcr.io/your-project-id/financial-advisor
 
 # 2. Deploy to Cloud Run
 gcloud run deploy financial-advisor \
-  --image=gcr.io/resolute-spirit-478702-n8/financial-advisor \
+  --image=gcr.io/your-project-id/financial-advisor \
   --region=us-east1 \
   --allow-unauthenticated \
   --set-env-vars="ALPHA_VANTAGE_API_KEY=your-key"

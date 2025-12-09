@@ -1450,9 +1450,9 @@ pytest eval/test_eval.py --eval-report
 ```env
 # Google Cloud Configuration
 GOOGLE_GENAI_USE_VERTEXAI=1
-GOOGLE_CLOUD_PROJECT=resolute-spirit-478702-n8
+GOOGLE_CLOUD_PROJECT=your-project-id
 GOOGLE_CLOUD_LOCATION=us-east1
-GOOGLE_CLOUD_STORAGE_BUCKET=financial-advisor-bucket-resolute-spirit-478702-n8
+GOOGLE_CLOUD_STORAGE_BUCKET=financial-advisor-bucket-your-project-id
 
 # Optional: API Keys
 # GOOGLE_API_KEY=your_api_key_here (if not using Vertex AI)
@@ -1581,7 +1581,7 @@ print(response.text)
 from google.cloud import aiplatform
 
 aiplatform.init(
-    project="resolute-spirit-478702-n8",
+    project="your-project-id",
     location="us-east1",
 )
 
