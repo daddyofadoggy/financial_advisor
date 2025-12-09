@@ -17,7 +17,15 @@
 
 ## Overview
 
-**Financial Advisor AI** is a multi-agent system built with Google's Agent Development Kit (ADK) and powered by Gemini 2.5 Pro that orchestrates five specialized AI agentsData Analyst (retrieving real-time market data via Alpha Vantage's Model Context Protocol with 60+ financial tools), Trading Analyst (developing investment strategies), Execution Analyst (creating actionable plans), Risk Analyst (evaluating potential risks), and Summary Agent (generating executive reports with PDF export)working sequentially through state-based communication to deliver comprehensive financial analysis and risk assessment for stock investments, all deployed on Google Cloud Run with an interactive web chat interface and RESTful APIs.
+**Financial Advisor AI** is a multi-agent system built with Google's Agent Development Kit (ADK) and powered by Gemini 2.5 Pro that orchestrates five specialized AI agents:
+
+- **Data Analyst** - Retrieving real-time market data via Alpha Vantage's Model Context Protocol with 60+ financial tools
+- **Trading Analyst** - Developing investment strategies  
+- **Execution Analyst** - Creating actionable execution plans
+- **Risk Analyst** - Evaluating potential risks
+- **Summary Agent** - Generating executive reports with PDF export
+
+These agents work sequentially through state-based communication to deliver comprehensive financial analysis and risk assessment for stock investments, all deployed on Google Cloud Run with an interactive web chat interface and RESTful APIs.
 
 ### Key Features
 
